@@ -940,9 +940,15 @@ Validation search results:
 
 
 def route_after_planner(state: AgentState) -> Literal["web_search", "prepare_section_writes"]:
-    if state.get("need_web_search", False):
-        return "web_search"
-    return "prepare_section_writes"
+    if "approve" in state.get("human_feedback", ""):
+
+
+        if state.get("need_web_search", False):
+            return "web_search"
+        return "prepare_section_writes"
+    else:
+        return "llm_planner"
+
 
 
 def route_after_check(state: AgentState) -> Literal["llm_planner", "end"]:
@@ -975,6 +981,7 @@ def build_graph():
         {
             "web_search": "web_search",
             "prepare_section_writes": "prepare_section_writes",
+            "llm_planner": "llm_planner",
         },
     )
 
