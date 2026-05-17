@@ -28,7 +28,7 @@ from langchain_deepseek import ChatDeepSeek
 
 llm = ChatDeepSeek(
     model=os.environ.get("DEEPSEEK_MODEL", "deepseek-chat"),   # 默认模型
-    api_key=os.environ.get("DEEPSEEK_API_KEY"),                # 从环境变量读取密钥
+    api_key=os.environ.get("DEEPSEEK_API_KEY", ""),                # 从环境变量读取密钥
     # base_url 默认为 https://api.deepseek.com，一般不用改
 )
 
